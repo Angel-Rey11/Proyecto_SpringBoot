@@ -47,6 +47,14 @@ public class Client implements Serializable {
 		this.misCoches = misCoches;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getDni() {
 		return dni;
 	}
@@ -114,7 +122,7 @@ public class Client implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Client [dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono
+		return "Client [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono
 				+ ", misCoches=" + misCoches + "]";
 	}
 	
