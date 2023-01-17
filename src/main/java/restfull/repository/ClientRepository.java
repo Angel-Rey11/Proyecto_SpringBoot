@@ -1,5 +1,11 @@
 package restfull.repository;
 
-public class ClientRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import restfull.model.Client;
+
+@Repository
+public interface ClientRepository extends JpaRepository<Client, Long>{
+	
 }
