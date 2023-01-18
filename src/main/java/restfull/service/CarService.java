@@ -7,13 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import restfull.model.Car;
+import restfull.model.Client;
 import restfull.repository.CarRepository;
+import restfull.repository.ClientRepository;
 
 @Service
 public class CarService {
 	
 	@Autowired
 	CarRepository repository;
+	@Autowired
+	ClientRepository repo;
 	
 	public Car addCar(Car c) {
 		try {
@@ -40,5 +44,16 @@ public class CarService {
 			e.printStackTrace();
 		}
 		return car;
+	}
+	
+	public void removeCar(Long id) {
+		try {
+			Optional<Car> c = repository.findById(id);
+			if (c.isPresent()) {
+				repository.deleteById(id);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

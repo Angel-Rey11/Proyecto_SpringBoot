@@ -9,8 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import restfull.model.Car;
 import restfull.model.Client;
 import restfull.service.ClientService;
 
@@ -37,6 +41,12 @@ public class ClientController {
 	public HttpStatus deleteClient(@PathVariable("id") Long id) {
 		service.removeClient(id);
 		return HttpStatus.OK;
+	}
+	
+	@PostMapping
+	public ResponseEntity<Client> createOrUpdate(@RequestBody Client c) {
+		Client client = service.addClient(c);
+		return new ResponseEntity<Client>(client, new HttpHeaders(), HttpStatus.OK);
 	}
 
 }
