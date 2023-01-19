@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.springframework.lang.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="Client")
 public class Client implements Serializable {
@@ -31,7 +33,8 @@ public class Client implements Serializable {
 	private String apellidos;
 	@Column(name="telefono")
 	private String telefono;
-	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.REMOVE},mappedBy = "cliente")
+	@OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.REMOVE},mappedBy = "cliente")
+	@JsonManagedReference
 	private List<Car> misCoches;
 	
 	public Client() {
