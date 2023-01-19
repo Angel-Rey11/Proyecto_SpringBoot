@@ -37,7 +37,7 @@ public class CarController {
 	
 	@PostMapping
 	public ResponseEntity<Car> createOrUpdate(@RequestBody Car c) {
-		Car coche = service.addCar(c);
+		Car coche = service.createOrUpdateClient(c);
 		return new ResponseEntity<Car>(coche, new HttpHeaders(), HttpStatus.OK);
 	}
 	

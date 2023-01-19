@@ -19,14 +19,18 @@ public class CarService {
 	@Autowired
 	ClientRepository repo;
 	
-	public Car addCar(Car c) {
-		try {
-			Optional<Car> coche = repository.findById(c.getId());
-			if (!coche.isPresent()) {
-				c = repository.save(c);
+	public Car createOrUpdateClient(Car c) {
+		if (c.getId() != null) {
+			try {
+				Optional<Car> car = repository.findById(c.getId());
+				if (car.isPresent()) {
+					c = repository.save(c);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			c = repository.save(c);
 		}
 		return c;
 	}
