@@ -15,14 +15,18 @@ public class ClientService {
 	@Autowired
 	ClientRepository repository;
 	
-	public Client addClient(Client client) {
-		try {
-			Optional<Client> c = repository.findById(client.getId());
-			if (!c.isPresent()) {
-				client = repository.save(client);
+	public Client createOrUpdateClient(Client client) {
+		if (client.getId() != null) {
+			try {
+				Optional<Client> c = repository.findById(client.getId());
+				if (c.isPresent()) {
+					client = repository.save(client);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			client = repository.save(client);
 		}
 		return client;
 	}
@@ -36,18 +40,6 @@ public class ClientService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public Client updateClient(Client client) {
-		try {
-			Optional<Client> c = repository.findById(client.getId());
-			if (c.isPresent()) {
-				client = repository.save(client);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return client;
 	}
 	
 	public Client getClientById(Long id) {

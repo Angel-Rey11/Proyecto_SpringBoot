@@ -45,7 +45,7 @@ public class ClientController {
 	
 	@PostMapping
 	public ResponseEntity<Client> createOrUpdate(@RequestBody Client c) {
-		Client client = service.addClient(c);
+		Client client = service.createOrUpdateClient(c);
 		return new ResponseEntity<Client>(client, new HttpHeaders(), HttpStatus.OK);
 	}
 
