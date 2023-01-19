@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import org.springframework.lang.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -31,8 +32,8 @@ public class Car implements Serializable {
     private String modelo;
 	@Column(name="ano")
     private String ano;
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonBackReference
     private Client cliente;
 
     public Car() {
