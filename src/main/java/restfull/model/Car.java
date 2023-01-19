@@ -19,6 +19,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="Car")
 public class Car implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
@@ -37,7 +40,7 @@ public class Car implements Serializable {
     private Client cliente;
 
     public Car() {
-
+    	super();
     }
 
     public Car(Long id, String matricula, String marca, String modelo, String ano, Client cliente) {
